@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <style>
+      * {
+        font-family: "Roboto", serif;
+        color: #030303;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .show-btn {
+        margin: 20px;
+      }
+      .cards {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+      .card {
+        width: 300px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        margin-bottom: 30px;
+        text-align: left;
+        border-radius: 10px;
+      }
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+      .desc {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 10px;
+      }
+      .right {
+        display: flex;
+        align-items: center;
+      }
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .author {
+        margin-top: 5px;
+        font-size: 16px;
+        color: #606060;
+      }
+      .img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .material-icons {
+        color: yellow;
+        font-size: 40px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>List of Books</h1>
+      <div id="app">
+        <button class="show-btn" @click="changeShow">
+          <span v-if="show">Hide Books</span>
+          <span v-else>Show Books</span>
+        </button>
+        <div class="cards" v-show="show">
+          <div class="card" v-for="book in books">
+            <img class="img" :src="book.img" alt="book.title" />
+            <div class="desc">
+              <div class="left">
+                <div class="title">{{book.title}}</div>
+                <div class="author">{{book.author}}</div>
+              </div>
+              <div class="right" @click="changeFavorite(book)">
+                <span v-if="book.isFav" class="material-icons">star</span>
+                <span v-else class="material-icons" style="color: black"
+                  >star_border</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="app.js"></script>
+    </div>
+  </body>
+</html>
